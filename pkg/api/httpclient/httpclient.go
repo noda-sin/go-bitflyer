@@ -10,10 +10,11 @@ import (
 	"net/http"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
-	"github.com/kkohtaka/go-bitflyer/pkg/api"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/auth"
+	"github.com/json-iterator/go"
+	"github.com/noda-sin/go-bitflyer/pkg/api"
+	"github.com/noda-sin/go-bitflyer/pkg/api/auth"
 	"github.com/pkg/errors"
+	"github.com/valyala/fasthttp"
 )
 
 var (

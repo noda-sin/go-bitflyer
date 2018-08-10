@@ -1,25 +1,25 @@
-// Copyright (C) 2017 Kazumasa Kohtaka <kkohtaka@gmail.com> All right reserved
+// Copyright (C) 2017 Kazumasa Kohtaka <noda-sin@gmail.com> All right reserved
 // This file is available under the MIT license.
 
 package v1
 
 import (
-	"github.com/kkohtaka/go-bitflyer/pkg/api/auth"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/httpclient"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/addresses"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/balance"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/bankaccounts"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/board"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/chats"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/coinins"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/coinouts"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/collateral"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/collateralaccounts"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/executions"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/health"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/markets"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/permissions"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/ticker"
+	"github.com/noda-sin/go-bitflyer/pkg/api/auth"
+	"github.com/noda-sin/go-bitflyer/pkg/api/httpclient"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/addresses"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/balance"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/bankaccounts"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/board"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/chats"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/coinins"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/coinouts"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/collateral"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/collateralaccounts"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/executions"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/health"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/markets"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/permissions"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/ticker"
 	"github.com/pkg/errors"
 )
 

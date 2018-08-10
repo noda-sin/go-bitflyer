@@ -43,7 +43,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/kkohtaka/go-bitflyer"
+  name = "github.com/noda-sin/go-bitflyer"
 
 [[constraint]]
   name = "github.com/pkg/errors"

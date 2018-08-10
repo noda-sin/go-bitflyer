@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/kkohtaka/go-bitflyer/pkg/api"
+	"github.com/noda-sin/go-bitflyer/pkg/api"
 	"github.com/pkg/errors"
 )
 

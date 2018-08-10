@@ -30,7 +30,7 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/kkohtaka/go-bitflyer"
+  name = "github.com/noda-sin/go-bitflyer"
   packages = [
     "pkg/api",
     "pkg/api/auth",

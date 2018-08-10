@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/google/go-querystring/query"
-	"github.com/kkohtaka/go-bitflyer/pkg/api/v1/types"
+	"github.com/noda-sin/go-bitflyer/pkg/api/v1/types"
 )
 
 type Request struct{}
