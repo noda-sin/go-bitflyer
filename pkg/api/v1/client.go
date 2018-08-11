@@ -31,16 +31,19 @@ type Client struct {
 	Host string
 
 	AuthConfig *auth.AuthConfig
+	FastHttp bool
 }
 
 type ClientOpts struct {
 	AuthConfig *auth.AuthConfig
+	FastHttp bool
 }
 
 func NewClient(opts *ClientOpts) *Client {
 	return &Client{
 		Host:       APIHost,
 		AuthConfig: opts.AuthConfig,
+		FastHttp: opts.FastHttp,
 	}
 }
 
@@ -52,7 +55,7 @@ func (c *Client) APIHost() string {
 
 func (c *Client) Markets(req *markets.Request) (*markets.Response, error) {
 	var resp markets.Response
-	err := httpclient.New().Request(NewAPI(c, markets.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, markets.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -61,7 +64,7 @@ func (c *Client) Markets(req *markets.Request) (*markets.Response, error) {
 
 func (c *Client) Board(req *board.Request) (*board.Response, error) {
 	var resp board.Response
-	err := httpclient.New().Request(NewAPI(c, board.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, board.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -70,7 +73,7 @@ func (c *Client) Board(req *board.Request) (*board.Response, error) {
 
 func (c *Client) Ticker(req *ticker.Request) (*ticker.Response, error) {
 	var resp ticker.Response
-	err := httpclient.New().Request(NewAPI(c, ticker.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, ticker.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -79,7 +82,7 @@ func (c *Client) Ticker(req *ticker.Request) (*ticker.Response, error) {
 
 func (c *Client) Executions(req *executions.Request) (*executions.Response, error) {
 	var resp executions.Response
-	err := httpclient.New().Request(NewAPI(c, executions.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, executions.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -88,7 +91,7 @@ func (c *Client) Executions(req *executions.Request) (*executions.Response, erro
 
 func (c *Client) Health(req *health.Request) (*health.Response, error) {
 	var resp health.Response
-	err := httpclient.New().Request(NewAPI(c, health.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, health.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -97,7 +100,7 @@ func (c *Client) Health(req *health.Request) (*health.Response, error) {
 
 func (c *Client) Chats(req *chats.Request) (*chats.Response, error) {
 	var resp chats.Response
-	err := httpclient.New().Request(NewAPI(c, chats.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Request(NewAPI(c, chats.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -108,7 +111,7 @@ func (c *Client) Chats(req *chats.Request) (*chats.Response, error) {
 
 func (c *Client) Permissions(req *permissions.Request) (*permissions.Response, error) {
 	var resp permissions.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, permissions.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, permissions.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -117,7 +120,7 @@ func (c *Client) Permissions(req *permissions.Request) (*permissions.Response, e
 
 func (c *Client) Balance(req *balance.Request) (*balance.Response, error) {
 	var resp balance.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, balance.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, balance.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -126,7 +129,7 @@ func (c *Client) Balance(req *balance.Request) (*balance.Response, error) {
 
 func (c *Client) Collateral(req *collateral.Request) (*collateral.Response, error) {
 	var resp collateral.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, collateral.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, collateral.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -135,7 +138,7 @@ func (c *Client) Collateral(req *collateral.Request) (*collateral.Response, erro
 
 func (c *Client) CollateralAccounts(req *collateralaccounts.Request) (*collateralaccounts.Response, error) {
 	var resp collateralaccounts.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, collateralaccounts.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, collateralaccounts.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -144,7 +147,7 @@ func (c *Client) CollateralAccounts(req *collateralaccounts.Request) (*collatera
 
 func (c *Client) Addresses(req *addresses.Request) (*addresses.Response, error) {
 	var resp addresses.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, addresses.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, addresses.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -153,7 +156,7 @@ func (c *Client) Addresses(req *addresses.Request) (*addresses.Response, error) 
 
 func (c *Client) Coinins(req *coinins.Request) (*coinins.Response, error) {
 	var resp coinins.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, coinins.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, coinins.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -162,7 +165,7 @@ func (c *Client) Coinins(req *coinins.Request) (*coinins.Response, error) {
 
 func (c *Client) Coinouts(req *coinouts.Request) (*coinouts.Response, error) {
 	var resp coinouts.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, coinouts.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, coinouts.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
@@ -171,7 +174,7 @@ func (c *Client) Coinouts(req *coinouts.Request) (*coinouts.Response, error) {
 
 func (c *Client) BankAccounts(req *bankaccounts.Request) (*bankaccounts.Response, error) {
 	var resp bankaccounts.Response
-	err := httpclient.New().Auth(c.AuthConfig).Request(NewAPI(c, bankaccounts.APIPath), req, &resp)
+	err := httpclient.New(c.FastHttp).Auth(c.AuthConfig).Request(NewAPI(c, bankaccounts.APIPath), req, &resp)
 	if err != nil {
 		return nil, errors.Wrap(err, "send HTTP request")
 	}
