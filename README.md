@@ -1,11 +1,10 @@
 # go-bitflyer
 
-[![Build Status](https://travis-ci.org/noda-sin/go-bitflyer.svg?branch=master)](https://travis-ci.org/noda-sin/go-bitflyer)
-[![Coverage Status](https://coveralls.io/repos/github/noda-sin/go-bitflyer/badge.svg?branch=master)](https://coveralls.io/github/noda-sin/go-bitflyer?branch=master)
-[![GoDoc](https://godoc.org/github.com/noda-sin/go-bitflyer?status.svg)](https://godoc.org/github.com/noda-sin/go-bitflyer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 go-bitflyer is a Go bindings for [bitFlyer Lightning API](https://lightning.bitflyer.jp/docs?lang=en).
+
+Using fasthttp around network request to speed up.
 
 ## Usage
 
