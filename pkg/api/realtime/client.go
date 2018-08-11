@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	jsonrpc "github.com/gorilla/rpc/v2/json2"
-	"github.com/gorilla/websocket"
+	"github.com/leavengood/websocket"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/noda-sin/go-bitflyer/pkg/api/v1/board"
 	"github.com/noda-sin/go-bitflyer/pkg/api/v1/executions"

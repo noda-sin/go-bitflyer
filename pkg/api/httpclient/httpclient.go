@@ -4,10 +4,6 @@
 package httpclient
 
 import (
-	"bytes"
-	"io"
-	"io/ioutil"
-	"net/http"
 	"time"
 
 	"github.com/json-iterator/go"
@@ -41,11 +37,19 @@ func (hc *httpClient) Request(api api.API, req api.Request, result interface{}) 
 	}
 	payload := req.Payload()
 
-	var body io.Reader
+	rawReq := fasthttp.AcquireRequest()
+	defer fasthttp.ReleaseRequest(rawReq)
+
+	rawReq.Header.SetMethod(req.Method())
+	rawReq.SetRequestURI(u.String())
+
 	if len(payload) > 0 {
-		body = bytes.NewReader(payload)
+		rawReq.SetBody(payload)
 	}
-	rawReq, err := http.NewRequest(req.Method(), u.String(), body)
+
+	resp := fasthttp.AcquireResponse()
+	defer fasthttp.ReleaseResponse(resp)
+
 	if err != nil {
 		return errors.Wrapf(err, "create POST request from url: %s", u.String())
 	}
@@ -54,24 +58,22 @@ func (hc *httpClient) Request(api api.API, req api.Request, result interface{}) 
 		if err != nil {
 			return errors.Wrap(err, "generate auth header")
 		}
-		rawReq.Header = *header
+		for key, _ := range *header {
+			value := header.Get(key)
+			rawReq.Header.Set(key, value)
+		}
 	}
 	if len(payload) > 0 {
 		rawReq.Header.Set("Content-Type", "application/json")
 	}
 
-	c := &http.Client{}
-	resp, err := c.Do(rawReq)
+	err = fasthttp.Do(rawReq, resp)
+
 	if err != nil {
 		return errors.Wrapf(err, "send HTTP request with url: %s", u.String())
 	}
-	defer resp.Body.Close()
 
-	// TODO: Don't use ioutil.ReadAll()
-	data, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return errors.Wrapf(err, "read data fetched from url: %s", u.String())
-	}
+	data := resp.Body()
 
 	err = json.Unmarshal(data, result)
 	if err != nil {
